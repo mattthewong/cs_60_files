@@ -1,0 +1,16 @@
+#lang slideshow
+(define (alien input)
+  (let*(( x (colorize (filled-ellipse input input) "green"))
+        ( y (colorize (filled-ellipse input input) "black"))
+        ( z (colorize (filled-ellipse input input) "white"))
+        (green (hc-append x x x x x ))
+        (eye (hc-append x y x y x))
+        (mouth (hc-append x y y y x))
+        (body (hc-append  z z x z z))
+        (legs (hc-append z x z x z)))
+  (vc-append legs legs green eye green mouth green body body body green body body body legs legs legs)))
+
+    
+    
+  
+

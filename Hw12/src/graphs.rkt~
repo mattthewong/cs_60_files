@@ -1,0 +1,237 @@
+#lang racket
+;;login(s): eu6 and or0
+(require htdp/testing)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Weighted Edge interface
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; make-edge: creates a weighted edge from a source and destination 
+;;            node and a weight
+;;   inputs: a source node and a desintation node
+;;   output: a weighted edge edge
+(define (make-edge s d w)
+  (list s d w))
+
+;; src: gets the source of an edge
+;;   inputs: a weighted edge
+;;   output: the source node of the edge
+(define (src edge)
+  (first edge))
+
+;; dest: gets the destination of an edge
+;;   inputs: a weighted edge
+;;   output: the destination node of the edge
+(define (dst edge)
+  (second edge))
+
+;; weight: gets the weight of an edge
+;;   inputs: a weighted edge
+;;   output: the edge's weight
+(define (weight edge)
+  (third edge))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Graph interface
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; make-empty-graph: 
+;;   inputs: none
+;;   output: an empty graph
+(define (make-empty-graph) 
+  '())
+
+;; add-edge: adds an edge to a graph (does not check for duplicates)
+;;   inputs: an edge and a graph
+;;   output: a new graph that includes the given edge
+(define (add-edge e G) 
+  (cons e G))
+
+;; emptyGraph?:
+;;   inputs: a graph
+;;   output: #t if the graph is empty; #f otherwise
+(define (emptyGraph? G)
+  (null? G))
+
+;; edge-list: gets a list of edges in the graph
+;;   inputs: a graph
+;;   output: a list of edges in the graph
+(define (edge-list G)
+  G)
+
+;; remove-edge: removes an edge from a graph
+;;   inputs: an edge and a graph
+;;   output: a new graph that excludes the given edge
+(define (remove-edge e G)
+  (remove e G)) 
+  
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Graphs for testing
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define graph0 
+  (make-empty-graph))
+
+(define graph2-no-cycle 
+  (add-edge (make-edge 'a 'b 1) 
+                      (make-empty-graph)))
+
+(define graph2-cycle 
+  (add-edge (make-edge 'a 'b 1) 
+            (add-edge (make-edge 'b 'a 1)
+                      (make-empty-graph))))
+
+; Graphs with more than 2 nodes use foldr to add all of the eges
+(define graph4-no-cycle
+  (foldr add-edge 
+         (make-empty-graph) 
+         (map make-edge 
+              '(a b c)
+              '(b c d)
+              '(1 1 1))))
+
+(define graph4-cycle
+  (foldr add-edge 
+         (make-empty-graph) 
+         (map make-edge 
+              '(a b c d)
+              '(b c d a)
+              '(1 1 1 1))))
+
+(define graph4-not-connected
+  (foldr add-edge 
+         (make-empty-graph) 
+         (map make-edge 
+              '(a b c d)
+              '(b a d c)
+              '(1 1 1 1))))
+
+(define graph11
+  (foldr add-edge 
+         (make-empty-graph) 
+         (map make-edge 
+              '(a b c d c e e f x y z)
+              '(b c d e f g h x y z b)
+              '(1 1 1 1 1 1 1 1 1 1 1))))
+
+(define graph5 
+    (foldr add-edge 
+         (make-empty-graph)
+         (map make-edge
+              '(e    a   e   a  a   a   b   b   d   b    c   c)
+              '(b    b   a   c  d   e   c   d   e   e    d   e)
+              '(100  25  42  7  13  15  10  5   2   100  1   7))))
+
+(define Graph1 
+    (foldr add-edge 
+         (make-empty-graph)
+         (map make-edge
+              '(a b c d e)
+              '(b c d e c)
+              '(1 1 1 1 1))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; gchildren
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (gchildren num node graph)
+  
+  (let* ((myKids (kids node graph)))
+    
+    (if (equal? num 0)
+      
+        (list node)
+        
+        (if (not (equal? (gchildren (- num 1) node graph) null))
+           
+         (foldr append '() (map (lambda (node) (gchildren (- num 1) node graph)) myKids))
+         
+         '()))))
+
+
+(define (kids node G)
+(map dst
+     (filter (lambda (edge) (equal? (src edge) node)) G))
+     )
+               
+                                    
+(check-expect (gchildren 0 'a graph11) '(a))
+(check-expect (gchildren 1 'a graph11) '(b))
+(check-expect (gchildren 2 'a graph11) '(c))
+
+
+
+;; these tests use sortsym to avoid ambiguity in node order...
+(define (sym<? s1 s2) (string<? (symbol->string s1) (symbol->string s2)))
+(define (sortsym L) (sort L sym<?)) ;; will sort a list of symbols
+
+(check-expect (sortsym (gchildren 1 'c graph11)) '(d f))
+(check-expect (sortsym (gchildren 2 'c graph11)) '(e x))
+(check-expect (sortsym (gchildren 3 'a graph11)) '(d f))
+(check-expect (sortsym (gchildren 3 'c graph11)) '(g h y))
+
+; additional test cases: 
+(check-expect (gchildren 1 'e graph11) '(g h))
+(check-expect (gchildren 1 'c graph11) '(d f))
+(check-expect (gchildren 1 'x graph11) '(y))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; min-dist
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define worstCost 42000000)
+
+
+(define (min-dist a b G)
+(if (equal? a b) 0
+  (if (emptyGraph? G) worstCost
+  (if (equal? (reachable? a b G) #f) worstCost
+
+  (let* ((edges (edge-list G))
+         (it (first edges))
+         (firstweight (weight it))
+         (subG (remove-edge it G))
+         
+         (use-it (+ (+ firstweight (min-dist a (src it) subG))
+                 (min-dist (dst it) b subG)))
+              
+         (lose-it (min-dist a b subG)))
+    
+    (min use-it lose-it))))))
+
+  
+
+(define (reachable? a b G)
+  (cond [(equal? a b) #t]
+        [(emptyGraph? G) #f]
+        [else (let* ([edges (edge-list G)]
+                     [it (first edges)]
+                     [subG (remove-edge it G)]
+                     [lose-it (reachable? a b subG)]
+                     [use-it (and (reachable? a (src it) subG) 
+                                  (reachable? (dst it) b subG))])
+                (or use-it lose-it))]))
+
+
+;; tests
+(check-expect (reachable? 'a 'a Graph1)  #t)
+(check-expect (reachable? 'z 'z Graph1)  #t)
+(check-expect (reachable? 'a 'b Graph1)  #t)
+(check-expect (reachable? 'a 'e Graph1)  #t)
+(check-expect (reachable? 'e 'd Graph1)  #t)
+(check-expect (reachable? 'e 'a Graph1)  #f)
+(check-expect (reachable? 'z 'a Graph1)  #f)
+
+;; how did we do?
+
+  
+(check-expect (min-dist 'a 'e graph5) 10)
+(check-expect (min-dist 'e 'b graph5) 67)
+(check-expect (min-dist 'd 'd graph5) 0)
+(check-expect (min-dist 'f 'a graph5) 42000000)
+;additional test cases:
+
+;WRITE THESE CASES 
+(generate-report)
+

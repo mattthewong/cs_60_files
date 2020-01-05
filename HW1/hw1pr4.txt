@@ -1,0 +1,129 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1347\cocoasubrtf570
+{\fonttbl\f0\fmodern\fcharset0 CourierNewPSMT;\f1\fnil\fcharset0 TrebuchetMS;\f2\froman\fcharset0 Times-Roman;
+\f3\fswiss\fcharset0 ArialMT;\f4\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww25380\viewh13600\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+hw1pr4.txt\
+login(s):eu6\
+\pard\pardeftab720\sl460\sa106
+
+\f1\b\fs34 \cf0 \expnd0\expndtw0\kerning0
+Part B: Selection Sort Loop Counting (Version 5)
+\f2\fs36 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f3\b0\fs30 \cf0 \expnd0\expndtw0\kerning0
+Show the loop-counting steps & summation to identify the runtime of Selection Sort (Version 5). Note: You must show the loop counting steps, summation, and final Big-O runtime for full credit.
+\f2\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+\
+ \'a0// Version 5 retrieved from:\
+ \'a0\'a0\'a0// http://www.leepoint.net/data/arrays/31arrayselectionsort.html\
+ \'a0\'a0\'a0public static void selectionSort1(int[] x) \{\
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0for (int i=0; i<x.length-1; i++) \{\
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0for (int j=i+1; j<x.length; j++) \{\
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0if (x[i] > x[j]) \{\
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0//... Exchange elements\
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0int temp = x[i];\
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0x[i] = x[j];\
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0x[j] = temp;\
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\}\
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\}\
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\}\
+ \'a0\'a0\'a0\}\
+Loop Counting Steps: 0,1,2\'85\'85.x.length-3,x.length-2\
+ \
+Summation: summation from i=0 to i=x.length-2 of (N^2-N/2): N^2 dominant term\
+\
+Big-O Runtime: O(N^2)\
+\
+\
+\pard\pardeftab720
+
+\f3\fs30 \cf0 \expnd0\expndtw0\kerning0
+\uc0\u8232 
+\f1\b\fs34 \expnd0\expndtw0\kerning0
+Part C: Selection Sort Loop Counting (Version 1)
+\f2\fs36 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f3\b0\fs30 \cf0 \expnd0\expndtw0\kerning0
+Show the loop-counting steps & summation to identify the runtime of Selection Sort (Version 1). Note: You must show the loop counting steps, summation, and final Big-O runtime for full credit.
+\f2\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl360
+
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+// Version 1 retrieved from:\uc0\u8232 // http://mathbits.com/MathBits/Java/arrays/SelectionSort.htm\u8232 // Selection Sort Method for Descending Order\u8232 public static void SelectionSort ( int [ ] num )\u8232 \{\u8232  \'a0\'a0\'a0\'a0int i, j, first, temp; \'a0\u8232  \'a0\'a0\'a0\'a0for ( i = num.length - 1; i > 0; i-- ) \'a0\u8232  \'a0\'a0\'a0\'a0\{\u8232  \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0first = 0; \'a0\'a0//initialize to subscript of first element\u8232  \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0for(j = 1; j <= i; j ++) \'a0\'a0//locate smallest element between positions 1 and i.\u8232  \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\{\u8232  \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0if( num[ j ] < num[ first ] ) \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\u8232  \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0first = j;\u8232  \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\}\u8232  \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0temp = num[ first ]; \'a0\'a0//swap smallest found with element in position i.\u8232  \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0num[ first ] = num[ i ];\u8232  \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0num[ i ] = temp; \u8232  \'a0\'a0\'a0\'a0\'a0\} \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\u8232 \}\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+Loop Counting Steps: num.length-1, num.length-2, 2,1\
+\
+Summation: summation from i=1 to i = num.length-1 of ((N^2-N)/2)) : N^2 dominant term\
+\
+Big-O Runtime: O(N^2)\
+\pard\pardeftab720\sl360
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl460\sa106
+
+\f1\b\fs34 \cf0 \expnd0\expndtw0\kerning0
+Part D: Bubble Sort Loop Counting 
+\f2\fs36 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f3\b0\fs30 \cf0 \expnd0\expndtw0\kerning0
+Show the loop-counting steps & summation to identify the runtime of Bubble Sort (Google Search Hit #2). Note: You must show the loop counting steps, summation, and final Big-O runtime for full credit. Please don\'92t google for Bubble Sort.
+\f2\fs24 \expnd0\expndtw0\kerning0
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+
+\f4 \cf0 \kerning1\expnd0\expndtw0 {{\NeXTGraphic Screen Shot 2015-09-12 at 12.23.53 PM.png \width14780 \height5600
+}¬}\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural
+
+\f2 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl360
+\cf0 \expnd0\expndtw0\kerning0
+\
+Loop Counting Steps: 0,1,2\'85.arr.length-3,arr.length-2\
+\
+Summation: summation from i=0 to i = arr.length-2 of ((N^2-N)/2)) : N^2 dominant term\
+\
+Big-O-Runtime: O(N^2)\
+\
+\pard\pardeftab720\sl460\sa106
+
+\f1\b\fs34 \cf0 \expnd0\expndtw0\kerning0
+Part E: Bubble Sort Description
+\f2\fs36 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+
+\f3\b0\fs30 \cf0 \expnd0\expndtw0\kerning0
+Like you did within hw0, write a description of the algorithm Bubble sort based upon the code above. \
+\
+\pard\pardeftab720
+
+\f2\fs24 \cf0 \expnd0\expndtw0\kerning0
+Bubble compares the first value in the array, and if it is larger than the next value, it is compared to the next value in the array, while the lower value is put in the old place of the higher value.\
+This continues until the entire array is sorted from least to greatest value.\
+\pard\pardeftab720\sl360
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+
+\f3\fs30 \cf0 \expnd0\expndtw0\kerning0
+\
+}

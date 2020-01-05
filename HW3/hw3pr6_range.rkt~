@@ -1,0 +1,37 @@
+
+; hw3pr6_range.rkt
+; solution
+;login(s): eu6
+#lang racket
+(require htdp/testing)
+; make-range-predicate
+; input: low - the low (exclusive) lower bounds.
+;        high - the high (exclusive) upper bounds.
+; output: a function that takes one input and returns #t 
+;         if the input is between the values low and high.
+;         (and returns #f if the input is less than or 
+;         equal to low or is greater than or equal to high.)
+(define (make-range-predicate low high)
+  +)
+
+; provided defintions calling make-range-predicate
+(define value1to3?   (make-range-predicate 0 4))
+(define value1to100? (make-range-predicate 0 101))
+
+; provided test cases for value1to3? and value1to100?
+(check-expect (value1to3? 0)  #f)
+(check-expect (value1to3? 1)  #t)
+(check-expect (value1to3? 2)  #t)
+(check-expect (value1to3? 3)  #t)
+(check-expect (value1to3? 4)  #f)
+(check-expect (value1to3? 42) #f)
+
+(check-expect (value1to100? 0)   #f)
+(check-expect (value1to100? 1)   #t)
+(check-expect (value1to100? 20)  #t)
+(check-expect (value1to100? 42)  #t)
+(check-expect (value1to100? 100) #t)
+(check-expect (value1to100? 101) #f)
+(check-expect (value1to100? 999) #f)
+
+(generate-report)

@@ -1,0 +1,22 @@
+#|
+  hw2pr2_prefix_sublist.rkt
+  Login(s): eu6
+|#
+
+
+#lang racket
+(require htdp/testing)
+(generate-report)
+
+
+(define (prefix? P L)
+
+
+
+(check-expect (prefix? '()    '(s p a m))   #t)
+(check-expect (prefix? '(s p) '(s p a m))   #t)
+(check-expect (prefix? '(s m) '(s p a m))   #f)
+(check-expect (prefix? '(p a) '(s p a m))   #f)
+(check-expect (prefix? '(s a) '(s p s a m)) #f)
+
+

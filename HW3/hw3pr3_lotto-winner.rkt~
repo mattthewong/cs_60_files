@@ -1,0 +1,45 @@
+#lang racket
+; hw3pr3_lotto-winner.rkt
+; login(s): eu6
+(require htdp/testing)
+
+; matches  
+; input: list-of-tickets - representing a lotto ticket
+;          expected format:  '(name # # ... #)
+;        winning-numbers - representing the winning numbers
+;          expected format;  '(# # .. #)
+; output: the number elements that match between 
+;         list-of-tickets and winning-numbers
+(define (matches list-of-tickets winning-numbers)
+  (length 
+   (filter (lambda (one-ticket) 
+             (member one-ticket winning-numbers))
+           list-of-tickets)))
+
+
+
+; provided tests:
+(check-expect (matches '(cat 1)     '())       0)
+(check-expect (matches '(cat 1)     '(2 3 4))  0)
+(check-expect (matches '(cat 1)     '(1))      1)
+(check-expect (matches '(ace 2 3 4) '(3 42 2)) 2)
+(check-expect (matches '(ace 2 3 4) '(8 4 5))  1)
+
+; lotto-winner 
+; input: list-of-tickets - representing a list of lotto tickets
+;         expected format: '((name1 # # ... #)... (nameN # # ... #)) 
+;        winning-numbers - representing the winning numbers
+;          expected format;  '(# # .. #)
+; output: the name and number of matching tickets from the ticket 
+;         with the most matches in winning-numbers
+(define (lotto-winner list-of-tickets winning-numbers)
+  '())
+
+(check-expect (lotto-winner
+    '( (alice 2 4 16 33 42)  
+       (bob 3 4 5 6 7) 
+       (cdrthecat 3 15 16 41 42) )  
+    '(2 3 15 32 42)) ; winning tickets
+              '(cdrthecat 3)) ; <- output of lotto-winner
+
+(generate-report)

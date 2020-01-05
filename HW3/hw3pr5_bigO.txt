@@ -1,0 +1,689 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1347\cocoasubrtf570
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fnil\fcharset0 TrebuchetMS;\f2\fmodern\fcharset0 CourierNewPS-BoldMT;
+\f3\froman\fcharset0 Times-Roman;\f4\fswiss\fcharset0 ArialMT;\f5\fmodern\fcharset0 CourierNewPSMT;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid102\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}}
+\margl1440\margr1440\vieww25400\viewh13620\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+hw3pr5_big0.txt\
+login(s): eu6\
+\
+\pard\pardeftab720\sl460\sa106
+
+\f1\b\fs34 \cf0 \expnd0\expndtw0\kerning0
+Part B: Analyze the runtime of 
+\f2 \expnd0\expndtw0\kerning0
+map 
+\f1 \expnd0\expndtw0\kerning0
+given a recurrence relationship \uc0\u8232 (5 points)
+\f3\fs36 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\b0\fs30 \cf0 \expnd0\expndtw0\kerning0
+We\'92ve implemented the higher order function 
+\f5 \expnd0\expndtw0\kerning0
+map
+\f4 \expnd0\expndtw0\kerning0
+ using recursion below:
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+(define (map funct L)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0(if (null? L)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0'()
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0(cons (funct (first L))
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0(map funct (rest L)))))
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\fs30 \cf0 \expnd0\expndtw0\kerning0
+If we define 
+\f5 \expnd0\expndtw0\kerning0
+N
+\f4 \expnd0\expndtw0\kerning0
+ to be the length of the input list 
+\f5 \expnd0\expndtw0\kerning0
+L
+\f4 \expnd0\expndtw0\kerning0
+, the recurrence relationship for this version of 
+\f5 \expnd0\expndtw0\kerning0
+map
+\f4 \expnd0\expndtw0\kerning0
+ is:
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+T(0) = 1
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+T(N) = 1 + T(N-1)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f4\fs30 \expnd0\expndtw0\kerning0
+Note: This assumes that 
+\f5 \expnd0\expndtw0\kerning0
+cons
+\f4 \expnd0\expndtw0\kerning0
+ and 
+\f5 \expnd0\expndtw0\kerning0
+funct
+\f4 \expnd0\expndtw0\kerning0
+ are constant-time operations, which they are!
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\fs30 \cf0 \expnd0\expndtw0\kerning0
+Write out the expansion of this to show what the Big-O runtime of 
+\f5 \expnd0\expndtw0\kerning0
+map
+\f4 \expnd0\expndtw0\kerning0
+ is. This will involve the following steps:
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl400
+\ls1\ilvl0
+\f4\fs30 \cf0 \kerning1\expnd0\expndtw0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+Write out additional versions of the recurrence relationship (e.g., T(N-1) = 1 + T(N-2); T(N-2) = 1 + T(N-3))\uc0\u8232 
+\b \expnd0\expndtw0\kerning0
+Answer: T(N-3) = 1+ T(N-2), T(N-4) = 1 + T(N-3), T(N=5) = 1+T(N-4)
+\b0 \expnd0\expndtw0\kerning0
+\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+Substitute in these additional versions of the recurrence relationship to \'93unwind\'94 the recurrence relationship. For example, substituting in T(N-1) = 1 + T(N-2) into the expression for T(N) above should yield an expression for T(N) in terms of T(N-2).\uc0\u8232 
+\b \expnd0\expndtw0\kerning0
+T(N) = 1 + T(N-2), T(N) = 1 + 1 + 1 + T(N-3), T(N) = 1 + 1+ 1+ 1+ 1+ 1 + T(N-6)
+\b0 \expnd0\expndtw0\kerning0
+\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+Identify the summation that results when you fully expand T(N) by continuing the substitutions.\uc0\u8232 
+\b \expnd0\expndtw0\kerning0
+T(N) = 1 + 1+ 1+ 1\'85.. +1 +1 +1 +1 
+\b0 \expnd0\expndtw0\kerning0
+\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+Using the summation you\'92ve identified as a guide, identify the runtime of 
+\f5 \expnd0\expndtw0\kerning0
+map
+\f4 \expnd0\expndtw0\kerning0
+.\uc0\u8232 
+\b \expnd0\expndtw0\kerning0
+Big-O Runtime = O(N)
+\b0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+
+\f3\fs24 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl460\sa106
+
+\f1\b\fs34 \cf0 \expnd0\expndtw0\kerning0
+Part C: Define the terms in the recurrence relationship for 
+\f2 \expnd0\expndtw0\kerning0
+append \uc0\u8232 
+\f4 \expnd0\expndtw0\kerning0
+(5 points)
+\f3\fs36 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\b0\fs30 \cf0 \expnd0\expndtw0\kerning0
+We\'92ve implemented the built-in function 
+\f5 \expnd0\expndtw0\kerning0
+append
+\f4 \expnd0\expndtw0\kerning0
+ using recursion below:
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+(define (append L1 L2)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0(if (null? L1)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0L2
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0(cons (first L1)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0(append (rest L1) L2))))
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\fs30 \cf0 \expnd0\expndtw0\kerning0
+The recurrence relationship for this version of 
+\f5 \expnd0\expndtw0\kerning0
+append
+\f4 \expnd0\expndtw0\kerning0
+ is also:
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+T(0) = 1
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+T(N) = 1 + T(N-1)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\fs30 \cf0 \expnd0\expndtw0\kerning0
+However, in the previous part we defined 
+\f5 \expnd0\expndtw0\kerning0
+N
+\f4 \expnd0\expndtw0\kerning0
+ to be the length of the input list 
+\f5 \expnd0\expndtw0\kerning0
+L
+\f4 \expnd0\expndtw0\kerning0
+. In 
+\f5 \expnd0\expndtw0\kerning0
+append
+\f4 \expnd0\expndtw0\kerning0
+ it isn\'92t clear what N represents. Explain what N represents (in terms of 
+\f5 \expnd0\expndtw0\kerning0
+L1
+\f4 \expnd0\expndtw0\kerning0
+ and/or 
+\f5 \expnd0\expndtw0\kerning0
+L2
+\f4 \expnd0\expndtw0\kerning0
+).\
+\pard\pardeftab720\sl400
+
+\b \cf0 \expnd0\expndtw0\kerning0
+In this instance, N can represent either L1 or L2. This is because the runtime of each input will reflect the runtime of the function = O (N).
+\b0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f3\fs24 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl460\sa106
+
+\f1\b\fs34 \cf0 \expnd0\expndtw0\kerning0
+Part D: Write a recurrence relationship for 
+\f2 \expnd0\expndtw0\kerning0
+filter \'a0
+\f4 \expnd0\expndtw0\kerning0
+(5 points)
+\f3\fs36 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\b0\fs30 \cf0 \expnd0\expndtw0\kerning0
+We\'92ve implemented the built-in function 
+\f5 \expnd0\expndtw0\kerning0
+filter
+\f4 \expnd0\expndtw0\kerning0
+ using recursion below:
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+(define (filter predicate? L)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0(cond [(null? L) '()]
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0[(predicate? (first L))
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0(cons (first L) 
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0(filter predicate? (rest L)))]
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0[else 
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0(filter predicate? (rest L))]))
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\fs30 \cf0 \expnd0\expndtw0\kerning0
+Write the recurrence relationship for 
+\f5 \expnd0\expndtw0\kerning0
+filter
+\f4 \expnd0\expndtw0\kerning0
+. You don\'92t need to also expand (i.e., unroll) this recurrence relationship. \'a0You don\'92t need to identify the Big-O runtime.\
+\pard\pardeftab720\sl400
+
+\b \cf0 \expnd0\expndtw0\kerning0
+Recurrence Relationship for 
+\b0 \expnd0\expndtw0\kerning0
+filter:\
+
+\b \expnd0\expndtw0\kerning0
+T(0)= 1\
+T(N) = 1 + T (N-1)\
+\pard\pardeftab720\sl400
+
+\f3\b0\fs24 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl460\sa106
+
+\f1\b\fs34 \cf0 \expnd0\expndtw0\kerning0
+Part E: Compare factorial and tail-factorial 
+\f2 \expnd0\expndtw0\kerning0
+\'a0
+\f4 \expnd0\expndtw0\kerning0
+(5 points)
+\f3\fs36 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\b0\fs30 \cf0 \expnd0\expndtw0\kerning0
+We wrote factorial using embedded recursion and tail recursion below. The Big-O runtime of these two functions is the same. Provide an explanation for why their Big-O runtime is the same. You should identify and explain their recurrence relationship(s), but you do not need to unwind the recurrence relationship to calculate the Big-O runtime. 
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+\page \pard\pardeftab720\sl320
+
+\f3\fs24 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f5\fs30 \cf0 \expnd0\expndtw0\kerning0
+; factorial (embedded recursion)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+; input: N an integer number greater than 0
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+; output: N! (i.e. N * N-1 * ... * 3 * 2 * 1)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+(define (factorial N)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0(if (< N 2)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a01
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0(* N (factorial (- N 1)))))
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f5\fs30 \cf0 \expnd0\expndtw0\kerning0
+; tail-factorial
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+; input: N an integer number greater than 0
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+; output: N! (i.e. N * N-1 * ... * 3 * 2 * 1)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+; Note - this version uses tail recursion
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+(define (tail-factorial N)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0(tail-factorial-helper N 1))\
+
+\f2\b T(0) = 1, and T(B) = 1+T(N-1). These functions both have Big-O runtime of N, as both use recursion once in the function, but tail \
+tail recursion uses less memory by storing the information in a variable.\
+
+\f3\b0\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f5\fs30 \cf0 \expnd0\expndtw0\kerning0
+; tail-factorial-helper
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+; input: N - an integer number greater than 0
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+; \'a0\'a0\'a0\'a0\'a0\'a0\'a0Answer - the cumulative factorial counted so far
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+; output: the product of N! and Answer (if the input Answer 
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+; \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0is 1, the function returns N!)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+(define (tail-factorial-helper N Answer)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0(if (< N 2)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0Answer
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0(tail-factorial-helper (- N 1) (* N Answer))))
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl460\sa106
+
+\f1\b\fs34 \cf0 \expnd0\expndtw0\kerning0
+Part F: Write a recurrence relationship for factorial-sequence 
+\f2 \expnd0\expndtw0\kerning0
+\'a0
+\f4 \expnd0\expndtw0\kerning0
+(5 points)
+\f3\fs36 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\b0\fs30 \cf0 \expnd0\expndtw0\kerning0
+We\'92ve written two functions, 
+\f5 \expnd0\expndtw0\kerning0
+factorial
+\f4 \expnd0\expndtw0\kerning0
+ and 
+\f5 \expnd0\expndtw0\kerning0
+factorial-sequence
+\f4 \expnd0\expndtw0\kerning0
+. 
+\f5 \expnd0\expndtw0\kerning0
+factorial-sequence
+\f4 \expnd0\expndtw0\kerning0
+ (shown below) calls the 
+\f5 \expnd0\expndtw0\kerning0
+factorial
+\f4 \expnd0\expndtw0\kerning0
+ function on every element in a list and returns the resulting list. (Notice how it looks REALLY similar to 
+\f5 \expnd0\expndtw0\kerning0
+map
+\f4 \expnd0\expndtw0\kerning0
+!)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f5\fs30 \cf0 \expnd0\expndtw0\kerning0
+(define (factorial N)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0(if (< N 2)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0N
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0(* N (factorial (- N 1)))))
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f5\fs30 \cf0 \expnd0\expndtw0\kerning0
+(define (factorial-sequence N)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0(if (< N 2)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0'()
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0(cons (factorial N)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0(factorial-sequence (- N 1)))))
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\fs30 \cf0 \expnd0\expndtw0\kerning0
+Here\'92s some sample test calls:
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+> (factorial-sequence 1)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+'(1)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+> (factorial-sequence 3)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+'(6 2 1)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+> (factorial-sequence 7)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+
+\f5\fs30 \expnd0\expndtw0\kerning0
+'(5040 720 120 24 6 2 1)
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\fs30 \cf0 \expnd0\expndtw0\kerning0
+Write the recurrence relationship for 
+\f5 \expnd0\expndtw0\kerning0
+factorial-sequence
+\f4 \expnd0\expndtw0\kerning0
+. You don\'92t need to also expand (i.e., unroll) this recurrence relationship. You don\'92t need to identify the Big-O runtime.\
+\
+\pard\pardeftab720\sl400
+
+\b \cf0 \expnd0\expndtw0\kerning0
+The recurrence relationship for factorial-sequence is T(0) = 1 T(N) = (1 + T(N-1))^2\
+\pard\pardeftab720\sl400
+
+\f3\b0\fs24 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl460\sa106
+
+\f1\b\fs34 \cf0 \expnd0\expndtw0\kerning0
+Part G: Write a recurrence relationship for StoogeSort 
+\f2 \expnd0\expndtw0\kerning0
+\'a0
+\f4 \expnd0\expndtw0\kerning0
+(5 points)
+\f3\fs36 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\b0\fs30 \cf0 \expnd0\expndtw0\kerning0
+Larry, Mo, and Curly have designed a new StoogeSort sorting algorithm that works as follows on an array of N elements:
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl400
+\ls2\ilvl0
+\f4\fs30 \cf0 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+If the input list has 0 or 1 elements, it's already sorted - just return it.\uc0\u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+If it has 2 or more elements:\uc0\u8232 \
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl400
+\ls2\ilvl1\cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+recursively use StoogeSort to sort the first N-1 elements, leaving the final element untouched at the back of the list\uc0\u8232 \
+\ls2\ilvl1\kerning1\expnd0\expndtw0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+afterwards, recursively use StoogeSort to sort the last N-1 elements, leaving the first element untouched at the front of the list\uc0\u8232 \
+\ls2\ilvl1\kerning1\expnd0\expndtw0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+finally, after both these steps, compare the first 
+\i \expnd0\expndtw0\kerning0
+two
+\i0 \expnd0\expndtw0\kerning0
+ elements of the resulting list. If they're out of order, swap them; if they're in order, don't do anything.\uc0\u8232 \
+\pard\pardeftab720\sl400
+\cf0 \expnd0\expndtw0\kerning0
+Remarkably, StoogeSort actually sorts! But the stooges are not sure of its run-time. For this algorithm, write a recurrence relation that captures its running time in terms of the number of comparisons made. You should assume:
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl400
+\ls3\ilvl0
+\f4\fs30 \cf0 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+that N is the length of the array\uc0\u8232 \
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+that you can access the first N-1 or the last N-1 elements in N-1 steps. \uc0\u8232 \
+\pard\pardeftab720
+
+\f3\fs24 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400
+
+\f4\fs30 \cf0 \expnd0\expndtw0\kerning0
+ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0T(1) = 1 \'a0\'a0\'a0\'a0\'a0# no comparisons if the list is 1 element long (or 0)\uc0\u8232  \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0T(N) = 1 + T(2^(N-1))\u8232 \u8232 
+\f3\fs24 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+}

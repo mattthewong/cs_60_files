@@ -1,0 +1,145 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1347\cocoasubrtf570
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww25100\viewh13340\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+Hw0pr3.txt\
+Matt Wong\
+Login(s): \
+\
+\
+******************\
+*    Part A:     *\
+******************\
+Important things in writing code:\
+- Clear comments (provided)\
+\
+- : Going along with clarity, it can be extremely difficult to read code without proper indentation. Proper indentation and spacing lead to a more readable script.\
+\
+- : In contrast, code that doesn\'92t have any spacing and is bunched together can be overwhelming to read. In the case that there is an error in\
+the code, it can be nearly impossible to relocate the error if the code is bunched up.\
+\
+- : I believe this bad example is trying to illustrate the problem with redundancy. In this case, there are two lines of print statements for two different words; however, this can be simplified with one print statement which incorporates both words. This is important because many times code can be simplified/made more concise.\
+\
+******************\
+*    Part B:     *\
+******************\
+(1) The versions use different amounts of in-line (within the method) comments. Identify \
+	one in-line comment that was helpful. \
+	\
+	Answer: Version 1\'92s \'93//locate smallest element between positions 1 and i\'94 comment was helpful, because at first I was unsure what the code was doing.\
+\
+	\
+(2) Identify one in-line comment that was not helpful and rewrite it to be clearer.\
+\
+	Answer: Version 4\'92s \'93// Find the index of the minimum value\'94 was not clear as to which line is corresponded to. \'93//Next lines find the index of min value\'94.\
+\
+(3) What do you think was the clearest variable name used to refer to the array?\
+\
+	Answer: (int[] myArray) from Version 8 was probably the clearest, because it literally contains the word array as reference.\
+\
+\
+(4) Version 4 used a helper method. Do you think this improved the quality of the code? \
+\
+	Answer: In terms of simplicity, I thin the quality was improved. However, because it is so simplified, it may be harder for the viewer to interpret.\
+\
+(5) The comparison <= is only used in Version 1.  How would the code from Version 1 be \
+	re-written to use only <? Originally: for(j = 1; j <= i; j ++)\
+\
+	Answer: for (j = i+1; j < i; j++)\
+\
+(6) Do you think the version using < or <= is clearer? \
+\
+	Answer: The version using <= is clearer and more specific.\
+\
+(7) How does Version 1 differ from the other versions? (i.e. what is unique about Version \
+	1?)\
+\
+	Answer: Version 1 sorts the list with the smallest value starting at the end of the list.\
+\
+(8) Which versions will modify the array that is provided as an argument? \
+\
+	Answer: All versions seem to modify the array provided as an argument.\
+\
+(9) Version 5 is shorter than the other versions. How is what it is doing different than \
+	the other versions? \
+\
+	Answer: Version 5 can swap values multiple times within the inner four loop, whereas other versions require the full loop for one swap.\
+\
+(10) Sometimes programmers don\'92t use \{\}s when there is only one statement within a \
+	for-loop or there is only one statement within an if. (Don\'92t do this!!!) Why might \
+		this cause problems if you\'92re modifying the code? \
+\
+	Answer: This can cause problems because it can be hard to tell where the beginning and ending of the loop/if statement is. In addition, when writing additional code for\
+the function to \'93do work\'94, if the location of the end of the function isn\'92t shown, some work the function is supposed to do can be left out.\
+\
+(11) Which versions leave off \{\}s? (Don\'92t do this!!! -- the point of this question is for \
+	you to realize you might not notice at first that the \{\}s were left off!) \
+\
+	Answer: Versions 1 and 2 leave brackets out for the if statement, Version 3 leaves brackets out for the 2nd for loop and first if statement. \
+	\
+(12) Version 7 defines the types of the variables i and j at the top of the method, which \
+	means that you can access those variables throughout the method. Version 6 defines \
+	the type of the variables i and j within the for-loop, which means that you can only \
+	use those values within the for-loop. Why might it be advantageous to define the \
+	variables within the for-loop? \
+\
+	Answer: It can be advantageous to define variables within the four loop if you only want the code below to affect the defined variables, and not the code written previously. However, variables written at the top of the query can be manipulated at any code written below.\
+\
+(13) One of the versions might generate (i.e. throw) an ArrayIndexOutOfBoundsException. \
+	Note: An ArrayIndexOutOfBoundException is explained by the Java official documentation \
+	(HERE) as \'e2\'80\'9cThrown to indicate that an array has been accessed with an illegal index. \
+	The index is either negative or greater than or equal to the size of the array.\'e2\'80\uc0\u157  Which \
+	version has this bug and what input could you provide to get an \
+	ArrayIndexOutOfBoundsException to be thrown?\
+\
+	Answer: Version 7 has this bug and the array index error can be thrown when inputting an integer n = 0, which would provide an out of bound array\
+where N-1 is equal to -1.\
+\
+(14) Is the runtime the same for all of the versions?\
+\
+	Answer: <TODO: In terms of Big-O runtime, because the versions are all generally performing the same function, the runtimes are all on the same order of speed.\
+	\
+	\
+	\
+******************\
+*    Part C:     *\
+******************\
+Pick your favorite version of selection sort. Show the loop-counting steps & summation to \
+identify the runtime of that version. Note: You must show the loop counting steps, \
+and summation for full credit.\
+\
+Version 1 of Selection Sort (minimized for clarity of big O runtime factors)\
+  \
+	     for ( i = N - 1; i > 0; i-- )        \
+	     \{\
+	          \
+	          for(j = 1; j <= i; j ++)   \
+	          \{\
+	          Do something     \
+	              \
+  \
+	          \}\
+	          Do something\
+\
+Loop counting steps(i values)       N-1, N-2, 2, 1,\
+# executions                       (N-1)+1,(N-2)+1, 3,2\
+Summation:                         summation from I=1 to N-1 of i-1\
+\
+\
+******************\
+*    Part D:     *\
+******************\
+Describe selection sort. \
+\
+Selection sort compares values within an array, sorting each value in order from greatest to least or least to greatest, depending on the type of the selection\
+sort function. This is done by either comparing two values within the array in one loop, swapping their positions until all comparisons are made, or by comparing one value\
+to every other value in the array, and sorting that way. \
+\
+\
+\
+\
+}

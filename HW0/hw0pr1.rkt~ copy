@@ -1,0 +1,41 @@
+#lang slideshow
+;using a particular shape multiple times
+(define c (circle 10))
+(define r (rectangle 10 20))
+
+; A semi-colon starts a line comment.
+; The expression below is the function body.
+(define (square n)
+ 
+  
+;created a square size n that is filled.
+(filled-rectangle n n))
+
+;created local bindings with nested defines.
+(define (four p)
+  (define two-p (hc-append p p))
+  (vc-append two-p two-p))
+;let function used so variable can be used in any expression position.
+(define (checker p1 p2)
+  (let ([p12 (hc-append p1 p2)]
+        [p21 (hc-append p2 p1)])
+    (vc-append p12 p21)))
+
+; using let* to bind to earlier bindings.
+(define (checkerboard p)
+  (let* ([rp (colorize p "red")]
+         [bp (colorize p "black")]
+         [c (checker rp bp)]
+         [c4 (four c)])
+    (four c4)))
+
+;defining functions that expect other functions as arguments.
+(define (series mk)
+  (hc-append 4 (mk 5) (mk 10) (mk 20)))
+
+;using lambda to anonymously define functions.
+(series (lambda (size) (checkerboard (square size))))
+
+
+ 
+

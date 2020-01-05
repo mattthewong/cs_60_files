@@ -1,0 +1,141 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf110
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fnil\fcharset0 TrebuchetMS;\f2\froman\fcharset0 Times-Roman;
+\f3\fswiss\fcharset0 ArialMT;\f4\fmodern\fcharset0 CourierNewPS-BoldMT;\f5\fmodern\fcharset0 CourierNewPSMT;
+\f6\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red127\green0\blue85;\red106\green62\blue62;\red0\green0\blue192;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}}
+\margl1440\margr1440\vieww25400\viewh13680\viewkind0
+\deftab720
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+hw9pr3_bigO.txt\
+login(s): eu6 and bv0
+\f1\fs42 \
+\pard\pardeftab720\sl580\partightenfactor0
+\cf0 Problem 3: Big-O with BSTs
+\f2\b\fs48 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl400\partightenfactor0
+\ls1\ilvl0
+\f3\b0\fs30 \cf0 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Learning Goal: Use recurrence relations to calculate the Big-O runtime of a Racket BST\uc0\u8232 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Prerequisites: recurrence relations and BSTs\uc0\u8232 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Submission: hw9pr3_bigO.txt\uc0\u8232 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Points: 10 \uc0\u8232 \u8232 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\f1\b\fs34 \cf0 Part B: Determine the Big-O runtime of 
+\f4 find-min
+\f1  in Racket for a BST with a particular shape (5 points)
+\f2\fs36 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b0\fs30 \cf0 Suppose you have a BST for which every non-leaf node has exactly one child subtree: its left subtree. See the example BST to the right. Derive the Big-O runtime for the 
+\f5 find-min
+\f3  function you wrote in part D of Problem 1. \uc0\u8232 \u8232 
+\f6\fs22 \cf2 \kerning1\expnd0\expndtw0 private\cf0  KeyType getMinKey(BSTNode \cf3 tempRoot\cf0 ) \{\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+		(\cf2 if\cf0  (\cf3 tempRoot\cf0 .\cf4 leftTree\cf0  == \cf2 null\cf0 ) \{\
+			\cf2 return\cf0  \cf3 tempRoot\cf0 .\cf4 key\cf0 ;\
+		\}) all on the order of O(1).\
+\
+		\cf2 return\cf0  getMinKey(\cf3 tempRoot\cf0 .\cf4 leftTree\cf0 ); (all on the order of O(N)).\
+	\}\
+\
+number of nodes = N.\
+Recurrence relation: summation from 0 to tree height (2^N -1) for 1 + T(N).\
+\
+\
+T(O) = 1\
+T(N) = 1+ T(N)\
+\
+Cheat Sheet\
+T(N-1)  = 1 + T(N-2)\
+T(1) = T(N-N)\
+T(N-2) = 1 + T(N-3)\
+\
+\
+Substitutions\
+T(0) = 1\
+T(N) = 1 + T(N-1)\
+T(N) = 1 + 1 + T(N-2)\
+T(N) = 1 + 1 + 1 + T(N-3)\
+T(N) = 1 + 1 + 1 + 1 + T(N-4)\
+\
+T(N) = 1 + T(N) ; T(N) is dominant factor.\
+Big-O-Runtime: O(N)\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f2\fs24 \cf0 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\fs30 \cf0 Your answer should:
+\f2\fs24 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl400\partightenfactor0
+\ls2\ilvl0
+\f3\fs30 \cf0 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Define any variables you\'92ll use\uc0\u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Give the recurrence relation\uc0\u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Give at least 3 generalizations of the recurrence (your "cheat sheet") to substitute into the recurrence\uc0\u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Show at least 3 substitutions into the recurrence to demonstrate a pattern\uc0\u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Give the result of the pattern\uc0\u8232 \
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+State the Big-O runtime\uc0\u8232 \u8232 \u8232 \
+\pard\pardeftab720\sl400\partightenfactor0
+\cf0 Be sure to define any variables you use. 
+\f2\fs24 \
+\pard\pardeftab720\sl460\partightenfactor0
+
+\f1\b\fs34 \cf0 Part C: Reason about a "worst case" BST (5 points)
+\f2\fs36 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b0\fs30 \cf0 Now we want you to reason about the scenario of a BST with nodes having exactly one child! \uc0\u8232 \u8232 To this end, answer the following questions:
+\f2\fs24 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl400\partightenfactor0
+\ls3\ilvl0
+\f3\fs30 \cf0 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Provide a sequence of at least 5 inserts into an empty BST that would yield a BST with all non-leaf nodes having exactly one child.\
+\uc0\u8232 10,9,8,7,6\
+\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Notice how for the function 
+\f5 find-min
+\f3 , the Big-O runtime was worse than for a perfectly balanced BST. Would this difference also arise for the function 
+\f5 nodeCount
+\f3 ? Explain your answer in a few sentences. Hint: think about the recursive calls in the two functions!\uc0\u8232 
+\f5\fs26 (define (nodeCount tree)
+\f3\fs30 \uc0\u8232 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f5\fs26 \cf0  \'a0\'a0	 \'a0\'a0(cond 
+\f2\fs24 \
+
+\f5\fs26 		[(emptyTree? tree) 0]
+\f2\fs24 \
+
+\f5\fs26 		[(leaf? tree) 1]
+\f2\fs24 \
+
+\f5\fs26 		[else (+ 1 (nodeCount (leftTree tree)) 
+\f2\fs24 \
+
+\f5\fs26 				(nodeCount (rightTree tree)))]))\
+\
+\
+The runtime for nodeCount would not matter on whether the tree is unbalanced or balanced, because it has to go through both trees. While in the case of find-min, the function is faster for a balanced tree relative to an unbalanced tree,this is not the case for nodeCount. NodeCount runs again for every node in the tree. 
+\f2\fs24 \
+}
